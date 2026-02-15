@@ -2,15 +2,32 @@ using UnityEngine;
 
 public class Kursor : MonoBehaviour
 {
-    public Transform startPoint;
-    public Transform endPoint;
+    private Transform startPoint;
+    private Transform endPoint;
     public float duration;
     public bool loopMovement = true;
     private float elapsedTime = 0f;
     private bool movingForward = true;
 
-    void Update()
+    public static int curentPosition = 1;
+    public static Transform nextPosition;
+
+    public static Transform House;
+    public static Transform CoperMine;
+    public static Transform StonePlatue;
+    public static Transform Town;
+    public static Transform Forest;
+
+    void Start()
     {
+        startPoint.position = House.position;
+    }
+    
+    void Update()
+    {           
+
+        endPoint.position = nextPosition.position;
+
         elapsedTime += Time.deltaTime;
         float t = elapsedTime / duration;
         t = Mathf.SmoothStep(0f, 1f, t);
@@ -19,18 +36,18 @@ public class Kursor : MonoBehaviour
         {
             transform.position = Vector3.Lerp(startPoint.position, endPoint.position, t);
         }
-        else
-        {
-            transform.position = Vector3.Lerp(endPoint.position, startPoint.position, t);
-        }
+        //else
+        //{
+           // transform.position = Vector3.Lerp(endPoint.position, startPoint.position, t);
+        //}
         if (elapsedTime >= duration)
         {
-            if (loopMovement)
-            {
-                movingForward = !movingForward;
-                elapsedTime = 0f;
-            }
-            else
+ //           if (loopMovement)
+  //          {
+  //              movingForward = !movingForward;
+   //             elapsedTime = 0f;
+   //         }
+   //         else
             {
                 this.enabled = false;
             }
