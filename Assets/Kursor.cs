@@ -21,12 +21,13 @@ public class Kursor : MonoBehaviour
     void Start()
     {
         startPoint.position = House.position;
+    //    nextPosition.position = Town.position;
     }
     
     void Update()
     {           
 
-        endPoint.position = nextPosition.position;
+      //  endPoint.position = nextPosition.position;
 
         elapsedTime += Time.deltaTime;
         float t = elapsedTime / duration;

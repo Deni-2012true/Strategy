@@ -271,11 +271,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 407075317}
   - {fileID: 129389657}
-  - {fileID: 1703030986}
   - {fileID: 1729430440}
+  - {fileID: 1703030986}
   - {fileID: 1357272592}
+  - {fileID: 407075317}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &56115550
@@ -366,6 +366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 63731005}
   - component: {fileID: 63731006}
+  - component: {fileID: 63731008}
   m_Layer: 0
   m_Name: TheStonePlateau
   m_TagString: Untagged
@@ -411,6 +412,26 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 30.759186
   m_Center: {x: -6.799999, y: -2.6808167, z: 9.610001}
+--- !u!114 &63731008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63731004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d60c63ba4ea45a4cb88bb3a7462b1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  House: {fileID: 407075317}
+  CoperMine: {fileID: 129389657}
+  StonePlateau: {fileID: 1703030986}
+  Town: {fileID: 1729430440}
+  Forest: {fileID: 1357272592}
+  Pointer: {fileID: 1268312345}
+  nextPosition: {fileID: 407075317}
+  duration: 15
 --- !u!1001 &68261467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -752,7 +773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 129389657}
   m_Layer: 0
-  m_Name: Coper mine
+  m_Name: CoperMine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1512,7 +1533,7 @@ Transform:
   m_GameObject: {fileID: 407075316}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -128.5, y: 44.4, z: -107.8}
+  m_LocalPosition: {x: -128.5, y: 44.4, z: -107.79999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2429,6 +2450,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d60c63ba4ea45a4cb88bb3a7462b1b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  House: {fileID: 407075317}
+  CoperMine: {fileID: 129389657}
+  StonePlateau: {fileID: 1703030986}
+  Town: {fileID: 1729430440}
+  Forest: {fileID: 1357272592}
+  Pointer: {fileID: 1268312345}
+  nextPosition: {fileID: 407075317}
+  duration: 15
 --- !u!1 &1000915636
 GameObject:
   m_ObjectHideFlags: 0
@@ -3157,7 +3186,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268312345}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e58a0f22871230b4bb4c5c7dfbcd8ffc, type: 3}
   m_Name: 
@@ -3301,7 +3330,7 @@ Transform:
   m_GameObject: {fileID: 1286906382}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2889946, y: 0.25829998, z: -0.08129437, w: 0.91823447}
-  m_LocalPosition: {x: 343.3, y: 91.66, z: 453.58}
+  m_LocalPosition: {x: 372.7, y: 91.66, z: 435.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3376,7 +3405,7 @@ Transform:
   m_GameObject: {fileID: 1357272591}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1708374, y: 17.2, z: -30.835938}
+  m_LocalPosition: {x: -39.9, y: 40.8, z: -57.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3540,6 +3569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1498478693}
   - component: {fileID: 1498478694}
+  - component: {fileID: 1498478696}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -3591,6 +3621,26 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 30
   m_Center: {x: -48.4, y: 47.5, z: -68.5}
+--- !u!114 &1498478696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498478692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d60c63ba4ea45a4cb88bb3a7462b1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  House: {fileID: 407075317}
+  CoperMine: {fileID: 129389657}
+  StonePlateau: {fileID: 1703030986}
+  Town: {fileID: 1729430440}
+  Forest: {fileID: 1357272592}
+  Pointer: {fileID: 1268312345}
+  nextPosition: {fileID: 407075317}
+  duration: 15
 --- !u!1001 &1512371948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4458,7 +4508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1703030986}
   m_Layer: 0
-  m_Name: Stone platue
+  m_Name: StonePlateau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4594,6 +4644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1813080060}
   - component: {fileID: 1813080061}
+  - component: {fileID: 1813080062}
   m_Layer: 0
   m_Name: "\u0421opperMine"
   m_TagString: Untagged
@@ -4648,6 +4699,26 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 34
   m_Center: {x: 0.9, y: 3.82, z: 3.29}
+--- !u!114 &1813080062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813080059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d60c63ba4ea45a4cb88bb3a7462b1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  House: {fileID: 407075317}
+  CoperMine: {fileID: 129389657}
+  StonePlateau: {fileID: 1703030986}
+  Town: {fileID: 1729430440}
+  Forest: {fileID: 1357272592}
+  Pointer: {fileID: 1268312345}
+  nextPosition: {fileID: 407075317}
+  duration: 15
 --- !u!1001 &1869307522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4942,6 +5013,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1915951802}
   - component: {fileID: 1915951803}
+  - component: {fileID: 1915951804}
   m_Layer: 0
   m_Name: Forest
   m_TagString: Untagged
@@ -4987,6 +5059,26 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 28.568329
   m_Center: {x: -228.20001, y: 324.26834, z: -184.3}
+--- !u!114 &1915951804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915951801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d60c63ba4ea45a4cb88bb3a7462b1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  House: {fileID: 407075317}
+  CoperMine: {fileID: 129389657}
+  StonePlateau: {fileID: 1703030986}
+  Town: {fileID: 1729430440}
+  Forest: {fileID: 1357272592}
+  Pointer: {fileID: 1268312345}
+  nextPosition: {fileID: 407075317}
+  duration: 15
 --- !u!1 &1963717698
 GameObject:
   m_ObjectHideFlags: 0
