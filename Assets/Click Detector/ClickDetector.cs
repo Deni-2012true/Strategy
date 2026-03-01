@@ -44,26 +44,35 @@ void Update()
                     if (gameObject.name == "House")
                     {
                         nextPosition.position = House.position;
-                        
+                        Debug.Log(Pointer.transform.position);
+                        Debug.Log(nextPosition.position);
                     }
                     if (gameObject.name == "Town")
                     {
-                       nextPosition.position = Town.position; 
+                        nextPosition.position = Town.position; 
+                        Debug.Log(Pointer.transform.position);
+                        Debug.Log(nextPosition.position);
                        
                     }
                     if (gameObject.name == "CopperMine")
                     {
-                       nextPosition.position = CoperMine.position; 
+                        nextPosition.position = CoperMine.position; 
+                        Debug.Log(Pointer.transform.position);
+                        Debug.Log(nextPosition.position);
                        
                     }
                   if (gameObject.name == "TheStonePlateau")
                     {
-                       nextPosition.position = StonePlateau.position; 
+                        nextPosition.position = StonePlateau.position; 
+                        Debug.Log(Pointer.transform.position);
+                        Debug.Log(nextPosition.position);
                        
                     }
                     if (gameObject.name == "Forest")
                     {
-                       nextPosition.position = Forest.position; 
+                        nextPosition.position = Forest.position; 
+                        Debug.Log(Pointer.transform.position);
+                        Debug.Log(nextPosition.position);
                        
                     }
                     
@@ -74,6 +83,8 @@ void Update()
     PointMovement();
         
 }
+
+
 
 public void PointMovement()
 {
