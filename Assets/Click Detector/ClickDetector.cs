@@ -9,96 +9,75 @@ public class ClickDetector : MonoBehaviour
     public Transform Forest;
     public GameObject Pointer;
     
-    
     public Transform nextPosition;
-
-
-    public float duration;
+    
     private float elapsedTime = 0f;
+    private float duration = 2f;
+    private Vector3 startPosition;
 
-
-
-
-
-
-
-
-void Update()
-{
-
-    if (Input.GetMouseButtonDown(0))
+    void Update()
     {
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-
-        if (Physics.Raycast(ray, out hit))
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Kursor.Moving == false)
             {
-                if (hit.transform == transform)
-                    
-                    {
-                    
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-                    Debug.Log("Клик по объекту: " + gameObject.name);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform == transform && !isMoving)
+                {
                     if (gameObject.name == "House")
                     {
                         nextPosition.position = House.position;
-                        Debug.Log(Pointer.transform.position);
-                        Debug.Log(nextPosition.position);
                     }
                     if (gameObject.name == "Town")
                     {
                         nextPosition.position = Town.position; 
-                        Debug.Log(Pointer.transform.position);
-                        Debug.Log(nextPosition.position);
-                       
                     }
                     if (gameObject.name == "CopperMine")
                     {
                         nextPosition.position = CoperMine.position; 
-                        Debug.Log(Pointer.transform.position);
-                        Debug.Log(nextPosition.position);
-                       
                     }
-                  if (gameObject.name == "TheStonePlateau")
+                    if (gameObject.name == "TheStonePlateau")
                     {
                         nextPosition.position = StonePlateau.position; 
-                        Debug.Log(Pointer.transform.position);
-                        Debug.Log(nextPosition.position);
-                       
                     }
                     if (gameObject.name == "Forest")
                     {
                         nextPosition.position = Forest.position; 
-                        Debug.Log(Pointer.transform.position);
-                        Debug.Log(nextPosition.position);
-                       
                     }
                     
-                    }
+                    StartMovement();
+                }
             }
-    }
-   
-    PointMovement();
-        
-}
-
-
-
-public void PointMovement()
-{
-    elapsedTime += Time.deltaTime;
-    float t = elapsedTime / duration;
-    t = Mathf.SmoothStep(0f, 1f, t);
-    Pointer.transform.position = Vector3.Lerp(Pointer.transform.position, nextPosition.position, t);
-    
-    if (elapsedTime >= duration)
-        {
-            {
-               // this.enabled = false;
             }
         }
-}
-
+        
+        
+        
+            PointMovement();
+    }
+    
+    public void StartMovement()
+    {
+        startPosition = Pointer.transform.position;
+        elapsedTime = 0f;
+    }
+    
+    public void PointMovement()
+    {
+        elapsedTime += Time.deltaTime;
+        float t = elapsedTime / duration;
+        t = Mathf.Clamp01(t);
+        float smoothT = Mathf.SmoothStep(0f, 1f, t);
+        Pointer.transform.position = Vector3.Lerp(startPosition, nextPosition.position, smoothT);
+        
+        if (t >= 1f)
+        {
+            Pointer.transform.position = nextPosition.position;
+            Debug.Log("Moving completed");
+        }
+    }
 }

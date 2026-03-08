@@ -2,56 +2,26 @@ using UnityEngine;
 
 public class Kursor : MonoBehaviour
 {
-    private Transform startPoint;
-    private Transform endPoint;
-    public float duration;
-    public bool loopMovement = true;
-    private float elapsedTime = 0f;
-    private bool movingForward = true;
-
-    public static int curentPosition = 1;
-    public static Transform nextPosition;
-
-    public static Transform House;
-    public static Transform CoperMine;
-    public static Transform StonePlatue;
-    public static Transform Town;
-    public static Transform Forest;
+    public static bool Moving = false;
+    private Rigidbody rb;
+    float currentSpeed = rb.velocity.magnitude;
 
     void Start()
     {
-        startPoint.position = House.position;
-    //    nextPosition.position = Town.position;
+        rb = GetComponent<Rigidbody>();
     }
     
     void Update()
-    {           
-
-      //  endPoint.position = nextPosition.position;
-
-        elapsedTime += Time.deltaTime;
-        float t = elapsedTime / duration;
-        t = Mathf.SmoothStep(0f, 1f, t);
-        
-        if (movingForward)
+    {        
+        currentSpeed = rb.velocity.magnitude;
+        if (currentSpeed = 0f)
         {
-            transform.position = Vector3.Lerp(startPoint.position, endPoint.position, t);
-        }
-        //else
-        //{
-           // transform.position = Vector3.Lerp(endPoint.position, startPoint.position, t);
-        //}
-        if (elapsedTime >= duration)
+            Moving = false;
+            Debug.Log("Скорость = 0!");
+        } else 
         {
- //           if (loopMovement)
-  //          {
-  //              movingForward = !movingForward;
-   //             elapsedTime = 0f;
-   //         }
-   //         else
-            {
-                this.enabled = false;
-            }
+            Moving = true;
+            Debug.Log("Скорость больше чем 0");
         }
     } 
 }
