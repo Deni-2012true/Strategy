@@ -7,6 +7,9 @@ public class ClickDetector : MonoBehaviour
     public Transform StonePlateau;
     public Transform Town;
     public Transform Forest;
+
+    public Transform Cube;
+
     public GameObject Pointer;
     
     public Transform nextPosition;
@@ -15,46 +18,50 @@ public class ClickDetector : MonoBehaviour
     private float duration = 2f;
     private Vector3 startPosition;
 
+    void Start ()
+    {
+        startPosition = Cube.position;
+        nextPosition.position = Cube.position;
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (Kursor.Moving == false)
-            {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform == transform && !isMoving)
+                string hitObjectName = hit.transform.gameObject.name;
+                
+                if (hitObjectName == "House")
                 {
-                    if (gameObject.name == "House")
-                    {
-                        nextPosition.position = House.position;
-                    }
-                    if (gameObject.name == "Town")
-                    {
-                        nextPosition.position = Town.position; 
-                    }
-                    if (gameObject.name == "CopperMine")
-                    {
-                        nextPosition.position = CoperMine.position; 
-                    }
-                    if (gameObject.name == "TheStonePlateau")
-                    {
-                        nextPosition.position = StonePlateau.position; 
-                    }
-                    if (gameObject.name == "Forest")
-                    {
-                        nextPosition.position = Forest.position; 
-                    }
-                    
+                    nextPosition.position = House.position;
+                    StartMovement();
+                }
+                else if (hitObjectName == "Town")
+                {
+                    nextPosition.position = Town.position; 
+                    StartMovement();
+                }
+                else if (hitObjectName == "CopperMine")
+                {
+                    nextPosition.position = CoperMine.position; 
+                    StartMovement();
+                }
+                else if (hitObjectName == "TheStonePlateau")
+                {
+                    nextPosition.position = StonePlateau.position; 
+                    StartMovement();
+                }
+                else if (hitObjectName == "Forest")
+                {
+                    nextPosition.position = Forest.position; 
                     StartMovement();
                 }
             }
-            }
         }
-        
         
         
             PointMovement();
@@ -77,7 +84,7 @@ public class ClickDetector : MonoBehaviour
         if (t >= 1f)
         {
             Pointer.transform.position = nextPosition.position;
-            Debug.Log("Moving completed");
+            //Debug.Log("Moving completed to: " + nextPosition.position);
         }
     }
 }

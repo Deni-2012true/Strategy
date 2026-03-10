@@ -4,7 +4,7 @@ public class Kursor : MonoBehaviour
 {
     public static bool Moving = false;
     private Rigidbody rb;
-    float currentSpeed = rb.velocity.magnitude;
+    float currentSpeed;
 
     void Start()
     {
@@ -13,8 +13,8 @@ public class Kursor : MonoBehaviour
     
     void Update()
     {        
-        currentSpeed = rb.velocity.magnitude;
-        if (currentSpeed = 0f)
+        currentSpeed = rb.linearVelocity.magnitude;
+        if (currentSpeed == 1f)
         {
             Moving = false;
             Debug.Log("Скорость = 0!");
