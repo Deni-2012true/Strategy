@@ -7,22 +7,12 @@ public class ClickDetector : MonoBehaviour
     public Transform StonePlateau;
     public Transform Town;
     public Transform Forest;
-
-    public Transform Cube;
-
-    public GameObject Pointer;
     
-    public Transform nextPosition;
-    
-    private float elapsedTime = 0f;
-    private float duration = 2f;
-    private Vector3 startPosition;
+    public GameObject Canvas;
 
-    void Start ()
-    {
-        startPosition = Cube.position;
-        nextPosition.position = Cube.position;
-    }
+    public static Vector3 nextPosition;
+   
+
 
     void Update()
     {
@@ -37,54 +27,37 @@ public class ClickDetector : MonoBehaviour
                 
                 if (hitObjectName == "House")
                 {
-                    nextPosition.position = House.position;
-                    StartMovement();
+                    nextPosition = House.position;
+                    Canvas.SetActive(true);
                 }
                 else if (hitObjectName == "Town")
                 {
-                    nextPosition.position = Town.position; 
-                    StartMovement();
+                    nextPosition = Town.position; 
+                    Canvas.SetActive(true);
                 }
                 else if (hitObjectName == "CopperMine")
                 {
-                    nextPosition.position = CoperMine.position; 
-                    StartMovement();
+                    nextPosition = CoperMine.position; 
+                    Canvas.SetActive(true);
                 }
                 else if (hitObjectName == "TheStonePlateau")
                 {
-                    nextPosition.position = StonePlateau.position; 
-                    StartMovement();
+                    nextPosition = StonePlateau.position; 
+                    Canvas.SetActive(true);
                 }
                 else if (hitObjectName == "Forest")
                 {
-                    nextPosition.position = Forest.position; 
-                    StartMovement();
+                    nextPosition = Forest.position;
+                    Canvas.SetActive(true);
                 }
+                
+                
             }
         }
         
         
-            PointMovement();
+            
     }
     
-    public void StartMovement()
-    {
-        startPosition = Pointer.transform.position;
-        elapsedTime = 0f;
-    }
     
-    public void PointMovement()
-    {
-        elapsedTime += Time.deltaTime;
-        float t = elapsedTime / duration;
-        t = Mathf.Clamp01(t);
-        float smoothT = Mathf.SmoothStep(0f, 1f, t);
-        Pointer.transform.position = Vector3.Lerp(startPosition, nextPosition.position, smoothT);
-        
-        if (t >= 1f)
-        {
-            Pointer.transform.position = nextPosition.position;
-            //Debug.Log("Moving completed to: " + nextPosition.position);
-        }
-    }
 }
