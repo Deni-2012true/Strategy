@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class HouseDetector : MonoBehaviour
 {
@@ -82,3 +82,4 @@ public void PointMovement()
 }
 
 }
+*/

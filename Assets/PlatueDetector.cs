@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class PlatueDetector : MonoBehaviour
 {
@@ -92,3 +92,4 @@ public void PointMovement()
 }
 
 }
+*/
