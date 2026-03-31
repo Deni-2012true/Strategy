@@ -56,9 +56,13 @@ public class Player : MonoBehaviour
             //transform.Rotate(new Vector3 (0, angleLeft, 0));
             //Debug.Log("поворот влево = " + angleLeft);
         }
-        if (Input.GetKey(KeyCode.Space))
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
+        //}
+        if (Input.GetMouseButtonDown(0))
         {
-            rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
+            Playercontroler.SetTrigger("Chopping");
         }
     }
 }
