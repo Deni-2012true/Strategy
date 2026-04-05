@@ -13,6 +13,7 @@ public class TreeCut : MonoBehaviour
     {
        if (HP < 1) 
        {
+        HP = 3;
         Destroy(gameObject);
        }
     }
