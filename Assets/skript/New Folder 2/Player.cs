@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public float speed = 100f;
     private Rigidbody rb;
     public float angleLeft = -1f;
+    public static bool Chopping = false;
     
     void Update()
     {
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Playercontroler.SetTrigger("Chopping");
+            Chopping = true;
         }
     }
 }
