@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -8,16 +9,16 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
     public float angleLeft = -1f;
     public static bool Chopping = false;
-    
+    public static bool Mining = false;
+    public static bool OreMining = false;
+    public static bool HerbPick = false;
+
     void Update()
     {
         AnimatorClipInfo[] clipInfo = Playercontroler.GetCurrentAnimatorClipInfo(0);
-        //Debug.Log(clipInfo[0].clip.name +" + canAttack = "+ canattack );
         if (Input.GetKey(KeyCode.W))
         {
             Playercontroler.SetBool("Walk", true);
-            //transform.Translate(new Vector3 (0, 0, 1) * Time.deltaTime);
-            //transform.Rotate(new Vector3 (1, 0, 0));
         }else if (Input.GetKeyDown(KeyCode.E) && canattack == true)
         {
             canattack = false;
@@ -41,30 +42,33 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.S))
         {
             Playercontroler.SetBool("Walk", true);
-            //transform.Translate(new Vector3 (0, 0, -1) * Time.deltaTime);
-            //transform.Rotate(new Vector3 (-1, 0, 0));
         }
         if (Input.GetKey(KeyCode.D))
         {
             Playercontroler.SetBool("Walk", true);
-            //transform.Translate(new Vector3 (1, 0, 0) * Time.deltaTime);
-            //transform.Rotate(new Vector3 (0, 0, 1));
         }
         if (Input.GetKey(KeyCode.A))
         {
             Playercontroler.SetBool("Walk", true);
-            //transform.Translate(new Vector3 (-1, 0, 0) * Time.deltaTime);
-            //transform.Rotate(new Vector3 (0, angleLeft, 0));
-            //Debug.Log("поворот влево = " + angleLeft);
         }
-        //if (Input.GetKey(KeyCode.Space))
-        //{
-        //    rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
-        //}
+    
         if (Input.GetMouseButtonDown(0))
         {
-            Playercontroler.SetTrigger("Chopping");
-            Chopping = true;
+            StartCoroutine(PlayAnimations());
+
+            IEnumerator PlayAnimations()
+            {
+                Playercontroler.SetTrigger("Chopping");
+                yield return new WaitForSeconds(1f);
+                Chopping = true;
+                Mining = true;
+                OreMining = true;
+                HerbPick = true;
+            }
+            
+
+            
         }
+
     }
 }

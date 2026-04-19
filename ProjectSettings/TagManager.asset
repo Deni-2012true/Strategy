@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - tree
+  - rock
+  - Picker
+  - Ore
+  - Herb
   layers:
   - Default
   - TransparentFX
