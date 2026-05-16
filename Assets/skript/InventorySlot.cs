@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
@@ -8,7 +8,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
   {
     if (transform.childCount == 0)
     {
-        Gameobgect dropper = eventData.pointerDrag;
+        GameObject dropped = eventData.pointerDrag;
         DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
         draggableItem.parentAfterDrag = transform;
     }
