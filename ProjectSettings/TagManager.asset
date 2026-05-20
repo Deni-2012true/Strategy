@@ -9,6 +9,7 @@ TagManager:
   - Picker
   - Ore
   - Herb
+  - Enemy
   layers:
   - Default
   - TransparentFX
