@@ -7674,7 +7674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3402305891407841116, guid: 15ca4494f24bf9741a48b37ec2c4c632, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 424.39
+      value: 424.97
       objectReference: {fileID: 0}
     - target: {fileID: 3402305891407841116, guid: 15ca4494f24bf9741a48b37ec2c4c632, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7732,6 +7732,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4ceb8332efe41df4f8cf7196c45d5562, type: 2}
+    - target: {fileID: 9003410764456430701, guid: 15ca4494f24bf9741a48b37ec2c4c632, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21909,5 +21913,5 @@ SceneRoots:
   - {fileID: 1226116801}
   - {fileID: 1502962245}
   - {fileID: 2018134523}
-  - {fileID: 773252343}
   - {fileID: 38627553}
+  - {fileID: 773252343}
