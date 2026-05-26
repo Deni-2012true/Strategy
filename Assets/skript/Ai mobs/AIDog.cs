@@ -10,8 +10,9 @@ public class AIDog : MonoBehaviour
 
     private Vector3 RandomDirection;
     private float changeDirectionTimer;
-    private float maxChange = 8f;
-    private float minChange = 6f;
+    private float maxChange = 20f;
+    private float minChange = 17f;
+    private float walkTime = 4f;
     
     void Start()
     {
@@ -23,11 +24,14 @@ public class AIDog : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, Player.position) <= 6)
         {
+            agent.speed = 3.5f;
             agent.SetDestination(Player.position);
-            WolfAnimator.SetBool("Walk", true);
-        } 
+            WolfAnimator.SetBool("Run", true);
+        }    
         else
         {
+            WolfAnimator.SetBool("Run", false);
+            agent.speed = 0.5f;
             changeDirectionTimer -= Time.deltaTime;
             if (changeDirectionTimer <= 0)
             {
