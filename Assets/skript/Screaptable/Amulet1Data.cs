@@ -4,7 +4,7 @@ using UnityEngine;
 public class Amulet1Data : ScriptableObject
 {
     [Header("Название")]
-    public string name;
+    public string AmuletName;
 
     [Header("Ранг")]
     public string rangName;

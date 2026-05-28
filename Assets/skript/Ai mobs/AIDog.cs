@@ -15,6 +15,9 @@ public class AIDog : MonoBehaviour
 
     private float walkTime = 4f;
     private bool isWalking = true;
+
+    private float attackTime = 1f;
+    private float attackTimer = 0f;
     
     void Start()
     {
@@ -38,6 +41,16 @@ public class AIDog : MonoBehaviour
             WolfAnimator.SetBool("Walk", false);
             WolfAnimator.SetBool("Run", false);
             WolfAnimator.SetTrigger("Attack");
+            if (attackTimer < attackTime)
+            {
+                attackTimer += Time.deltaTime;
+            } 
+            else 
+            {
+                PlayerMovement.HP -= 10;
+                Debug.Log(PlayerMovement.HP);
+                attackTimer = 0f;
+            }
         }  
         else
         {

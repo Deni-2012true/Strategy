@@ -3,9 +3,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    // Скорость поворота в градусах в секунду. 
-    // Попробуй значения от 720 до 1200 в Инспекторе.
-    public float rotationSpeed = 900f; 
+    public static int HP = 100;
+    public float rotationSpeed = 900f;
 
     void Update()
     {
@@ -18,10 +17,8 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.Translate(movement * moveSpeed * Time.deltaTime, Space.World);
             
-            // Фиксируем, куда нужно повернуться
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             
-            // Поворачиваемся плавно, но с четкой скоростью в градусах
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);                     
         }
     }

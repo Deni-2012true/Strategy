@@ -8,10 +8,6 @@ public class Player : MonoBehaviour
     public float speed = 100f;
     private Rigidbody rb;
     public float angleLeft = -1f;
-    public static bool Chopping = false;
-    public static bool Mining = false;
-    public static bool OreMining = false;
-    public static bool HerbPick = false;
 
     void Update()
     {
@@ -52,23 +48,23 @@ public class Player : MonoBehaviour
             Playercontroler.SetBool("Walk", true);
         }
     
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(PlayAnimations());
+        //if (Input.GetMouseButtonDown(0))
+        //{
+            //StartCoroutine(PlayAnimations());
 
-            IEnumerator PlayAnimations()
-            {
-                Playercontroler.SetTrigger("Chopping");
-                yield return new WaitForSeconds(1f);
-                Chopping = true;
-                Mining = true;
-                OreMining = true;
-                HerbPick = true;
-            }
+            //IEnumerator PlayAnimations()
+            //{
+                //Playercontroler.SetTrigger("Chopping");
+               //yield return new WaitForSeconds(1f);
+                //Chopping = true;
+                //Mining = true;
+               // OreMining = true;
+                //HerbPick = true;
+            //}
             
 
             
-        }
+        //}
 
     }
 }

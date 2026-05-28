@@ -4,7 +4,7 @@ using UnityEngine;
 public class WeaponData : ScriptableObject
 {
     [Header("Название")]
-    public string name;
+    public string WeaponName;
 
     [Header("Ранг")]
     public string rangName;

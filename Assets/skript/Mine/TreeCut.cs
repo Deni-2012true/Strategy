@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class TreeCut : MonoBehaviour
 {
-    public static int HP = 3;
+    public static int TreeHP = 3;
 
     public GameObject Axe;
 
     void Update()
     {
-       if (HP < 1) 
+       if (TreeHP < 1) 
        {
-        HP = 3;
+        TreeHP = 3;
         Axe.SetActive(false);
         Destroy(gameObject);
        }

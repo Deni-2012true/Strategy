@@ -8,7 +8,7 @@ public class picking : MonoBehaviour
     {
         if (HerbHP < 1) 
         {
-        HerbHP = 3;
+        HerbHP = 1;
         Destroy(gameObject);
         }
     }
