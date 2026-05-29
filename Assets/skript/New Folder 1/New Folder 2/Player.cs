@@ -47,24 +47,6 @@ public class Player : MonoBehaviour
         {
             Playercontroler.SetBool("Walk", true);
         }
-    
-        //if (Input.GetMouseButtonDown(0))
-        //{
-            //StartCoroutine(PlayAnimations());
-
-            //IEnumerator PlayAnimations()
-            //{
-                //Playercontroler.SetTrigger("Chopping");
-               //yield return new WaitForSeconds(1f);
-                //Chopping = true;
-                //Mining = true;
-               // OreMining = true;
-                //HerbPick = true;
-            //}
-            
-
-            
-        //}
 
     }
 }

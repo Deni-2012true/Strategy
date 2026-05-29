@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class TreeCut : MonoBehaviour
 {
-    public static int TreeHP = 3;
+    public int treeHP = 3;
 
-    public GameObject Axe;
-
-    void Update()
+    public void TakeDamage(int damage)
     {
-       if (TreeHP < 1) 
-       {
-        TreeHP = 3;
-        Axe.SetActive(false);
-        Destroy(gameObject);
-       }
+        treeHP -= damage;
+        if (treeHP <= 0)
+        {
+            Collider col = GetComponent<Collider>();
+            if (col != null) col.enabled = false;
+            Destroy(gameObject);
+        }
     }
 }

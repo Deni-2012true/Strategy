@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class OreMine : MonoBehaviour
 {
-    public static int OreHP = 3;
+    public int oreHP = 8;
 
-    public GameObject Pick;
-
-    void Update()
+    public void TakeDamage(int damage)
     {
-        if (OreHP < 1) 
+        oreHP -= damage;
+        if (oreHP <= 0)
         {
-        OreHP = 3;
-        Pick.SetActive(false);
-        Destroy(gameObject);
+            Collider col = GetComponent<Collider>();
+            if (col != null) col.enabled = false;
+            Destroy(gameObject);
         }
     }
 }

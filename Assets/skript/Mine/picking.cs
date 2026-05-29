@@ -1,15 +1,17 @@
 using UnityEngine;
 
-public class picking : MonoBehaviour
+public class HerbPick : MonoBehaviour
 {
-    public static int HerbHP = 1;
+    public int herbHP = 1;
 
-    void Update()
+    public void TakeDamage(int damage)
     {
-        if (HerbHP < 1) 
+        herbHP -= damage;
+        if (herbHP <= 0)
         {
-        HerbHP = 1;
-        Destroy(gameObject);
+            Collider col = GetComponent<Collider>();
+            if (col != null) col.enabled = false;
+            Destroy(gameObject);
         }
     }
 }

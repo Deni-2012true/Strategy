@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class RockMine : MonoBehaviour
 {
-    public static int RockHP = 3;
+    public int rockHP = 5;
 
-    public GameObject Pick;
-
-    void Update()
+    public void TakeDamage(int damage)
     {
-        if (RockHP < 1) 
+        rockHP -= damage;
+        if (rockHP <= 0)
         {
-        RockHP = 3;
-        Pick.SetActive(false);
-        Destroy(gameObject);
+            Collider col = GetComponent<Collider>();
+            if (col != null) col.enabled = false;
+            Destroy(gameObject);
         }
     }
 }

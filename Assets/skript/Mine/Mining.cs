@@ -3,101 +3,106 @@ using System.Collections;
 
 public class Mining : MonoBehaviour
 {
-    public GameObject Axe;
-    public GameObject AxeIcon;
-    public GameObject Pick;
-    public GameObject PickIcon;
-    public GameObject PickIcon2;
-
+    public GameObject Axe;      // дочерний объект игрока (топор)
+    public GameObject Pick;     // дочерний объект игрока (кирка)
     public Animator Playercontroler;
 
     private bool isActionInProgress = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("tree"))
-        {
+        if (other == null || other.gameObject == null) return;
+
+        if (other.CompareTag("tree") && Axe != null)
             Axe.SetActive(true);
-        }
-        if (other.CompareTag("rock") || other.CompareTag("Ore"))
-        {
+
+        if ((other.CompareTag("rock") || other.CompareTag("Ore")) && Pick != null)
             Pick.SetActive(true);
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Axe.SetActive(false);
-        AxeIcon.SetActive(false);
-        Pick.SetActive(false);
-        PickIcon.SetActive(false);
-        PickIcon2.SetActive(false);
+        if (Axe != null) Axe.SetActive(false);
+        if (Pick != null) Pick.SetActive(false);
         isActionInProgress = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
+        if (other == null || other.gameObject == null) return;
         if (isActionInProgress) return;
 
-        if (other.CompareTag("tree"))
+        if (other.CompareTag("tree") && other.enabled)
         {
-            AxeIcon.SetActive(true);
             if (Input.GetMouseButtonDown(0))
-                StartCoroutine(ChopTree());
+                StartCoroutine(ChopTree(other.gameObject));
         }
-        else if (other.CompareTag("rock"))
+        else if (other.CompareTag("rock") && other.enabled)
         {
-            PickIcon.SetActive(true);
             if (Input.GetMouseButtonDown(0))
-                StartCoroutine(MineRock());
+                StartCoroutine(MineRock(other.gameObject));
         }
-        else if (other.CompareTag("Ore"))
+        else if (other.CompareTag("Ore") && other.enabled)
         {
-            PickIcon2.SetActive(true);
             if (Input.GetMouseButtonDown(0))
-                StartCoroutine(MineOre());
+                StartCoroutine(MineOre(other.gameObject));
         }
-        else if (other.CompareTag("Herb"))
+        else if (other.CompareTag("Herb") && other.enabled)
         {
-            //добавить иконку травы
             if (Input.GetMouseButtonDown(0))
-                StartCoroutine(PickHerb());
+                StartCoroutine(PickHerb(other.gameObject));
         }
     }
 
-    private IEnumerator ChopTree()
+    private IEnumerator ChopTree(GameObject treeObj)
     {
         isActionInProgress = true;
-        Playercontroler.SetTrigger("Chopping");
-        yield return new WaitForSeconds(2.8f);
-        TreeCut.TreeHP -= 1;
+        if (Playercontroler != null) Playercontroler.SetTrigger("Chopping");
+        yield return new WaitForSeconds(1f);
+        if (treeObj != null)
+        {
+            TreeCut tree = treeObj.GetComponent<TreeCut>();
+            if (tree != null) tree.TakeDamage(1);
+        }
         isActionInProgress = false;
     }
 
-    private IEnumerator MineRock()
+    private IEnumerator MineRock(GameObject rockObj)
     {
         isActionInProgress = true;
-        Playercontroler.SetTrigger("Mining");
+        if (Playercontroler != null) Playercontroler.SetTrigger("Chopping");
         yield return new WaitForSeconds(1f);
-        RockMine.RockHP -= 1;
+        if (rockObj != null)
+        {
+            RockMine rock = rockObj.GetComponent<RockMine>();
+            if (rock != null) rock.TakeDamage(1);
+        }
         isActionInProgress = false;
     }
 
-    private IEnumerator MineOre()
+    private IEnumerator MineOre(GameObject oreObj)
     {
         isActionInProgress = true;
-        Playercontroler.SetTrigger("Mining");
+        if (Playercontroler != null) Playercontroler.SetTrigger("Chopping");
         yield return new WaitForSeconds(1f);
-        OreMine.OreHP -= 1;
+        if (oreObj != null)
+        {
+            OreMine ore = oreObj.GetComponent<OreMine>();
+            if (ore != null) ore.TakeDamage(1);
+        }
         isActionInProgress = false;
     }
 
-    private IEnumerator PickHerb()
+    private IEnumerator PickHerb(GameObject herbObj)
     {
         isActionInProgress = true;
-        Playercontroler.SetTrigger("Picking");
+        if (Playercontroler != null) Playercontroler.SetTrigger("Chopping");
         yield return new WaitForSeconds(1f);
-        picking.HerbHP -= 1;
+        if (herbObj != null)
+        {
+            HerbPick herb = herbObj.GetComponent<HerbPick>();
+            if (herb != null) herb.TakeDamage(1);
+        }
         isActionInProgress = false;
     }
 }
