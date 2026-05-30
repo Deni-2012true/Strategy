@@ -3,6 +3,7 @@ using UnityEngine;
 public class TreeCut : MonoBehaviour
 {
     public int treeHP = 3;
+    public Animator animator;
 
     public void TakeDamage(int damage)
     {
@@ -11,7 +12,13 @@ public class TreeCut : MonoBehaviour
         {
             Collider col = GetComponent<Collider>();
             if (col != null) col.enabled = false;
-            Destroy(gameObject);
+            animator.SetTrigger("Fall");
+            Destroy(gameObject, 2.2f);
         }
+        else
+        {
+            animator.SetTrigger("Hit");
+        }
+        
     }
 }

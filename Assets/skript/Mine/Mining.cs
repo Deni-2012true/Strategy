@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Mining : MonoBehaviour
 {
-    public GameObject Axe;      // дочерний объект игрока (топор)
-    public GameObject Pick;     // дочерний объект игрока (кирка)
+    public GameObject Axe;      
+    public GameObject Pick;     
     public Animator Playercontroler;
 
     private bool isActionInProgress = false;
