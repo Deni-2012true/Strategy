@@ -2,11 +2,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Движение")]
     public float moveSpeed = 5f;
     public float rotationSpeed = 900f;
 
-    [Header("Анимация и атака")]
     public Animator animator;           
     private bool canAttack = true;      
 
