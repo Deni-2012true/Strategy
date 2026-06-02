@@ -7,7 +7,18 @@ public class Mining : MonoBehaviour
     public GameObject Pick;     
     public Animator Playercontroler;
 
+    private AudioSource audioSource;
+
+    public AudioClip PickMiningSound;
+    public AudioClip AxeCutSound;
+    public AudioClip PickingSound;
+
     private bool isActionInProgress = false;
+
+    public void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -63,6 +74,7 @@ public class Mining : MonoBehaviour
         {
             TreeCut tree = treeObj.GetComponent<TreeCut>();
             if (tree != null) tree.TakeDamage(1);
+            audioSource.PlayOneShot(AxeCutSound, 1f);
         }
         isActionInProgress = false;
     }
@@ -76,6 +88,7 @@ public class Mining : MonoBehaviour
         {
             RockMine rock = rockObj.GetComponent<RockMine>();
             if (rock != null) rock.TakeDamage(1);
+            audioSource.PlayOneShot(PickMiningSound, 1f);
         }
         isActionInProgress = false;
     }
@@ -89,6 +102,7 @@ public class Mining : MonoBehaviour
         {
             OreMine ore = oreObj.GetComponent<OreMine>();
             if (ore != null) ore.TakeDamage(1);
+            audioSource.PlayOneShot(PickMiningSound, 1f);
         }
         isActionInProgress = false;
     }
@@ -102,6 +116,7 @@ public class Mining : MonoBehaviour
         {
             HerbPick herb = herbObj.GetComponent<HerbPick>();
             if (herb != null) herb.TakeDamage(1);
+            audioSource.PlayOneShot(PickingSound, 1f);
         }
         isActionInProgress = false;
     }

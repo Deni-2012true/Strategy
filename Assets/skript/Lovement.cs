@@ -27,15 +27,14 @@ public class PlayerMovement : MonoBehaviour
 
         
         bool isWalking = movement.magnitude > 0.1f;
-        if (animator != null)
+        
             animator.SetBool("Walk", isWalking);
 
         
         if (Input.GetKeyDown(KeyCode.E) && canAttack)
         {
             canAttack = false;
-            if (animator != null)
-                animator.SetTrigger("Attack");
+            animator.SetTrigger("Attack");
         }
 
         
