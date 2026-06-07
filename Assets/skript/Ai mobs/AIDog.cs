@@ -18,11 +18,15 @@ public class AIDog : MonoBehaviour
 
     private float attackTime = 1f;
     private float attackTimer = 0f;
-    
+
+    private AudioSource audioSource;
+    public AudioClip AttackSound;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         ChangeDirection();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -50,6 +54,7 @@ public class AIDog : MonoBehaviour
                 PlayerMovement.HP -= 10;
                 Debug.Log(PlayerMovement.HP);
                 attackTimer = 0f;
+                audioSource.PlayOneShot(AttackSound, 1f);
             }
         }  
         else

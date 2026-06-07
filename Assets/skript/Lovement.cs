@@ -8,11 +8,15 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;           
     private bool canAttack = true;      
 
-    public static int HP = 100;         
+    public static int HP = 100;
+
+    private AudioSource aidioPlay;
+    public AudioClip GrasWalkSound;
+    private float TimerSound = 4f;
 
     void Update()
     {
-        
+        aidioPlay = GetComponent<AudioSource>();
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
@@ -24,11 +28,26 @@ public class PlayerMovement : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
+        else
+        {
+            aidioPlay.Stop();
+            TimerSound = 0f;
+        }
+        if (movement.magnitude > 0.1f && TimerSound <= 0)
+        {
+            TimerSound = 0f;
+            aidioPlay.PlayOneShot(GrasWalkSound, 1f);
+        }
+        if (TimerSound > 0)
+        {
+            TimerSound -= Time.deltaTime;
+        }
 
-        
+
         bool isWalking = movement.magnitude > 0.1f;
         
             animator.SetBool("Walk", isWalking);
+            
 
         
         if (Input.GetKeyDown(KeyCode.E) && canAttack)

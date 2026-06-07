@@ -82,7 +82,7 @@ public class Mining : MonoBehaviour
     private IEnumerator MineRock(GameObject rockObj)
     {
         isActionInProgress = true;
-        if (Playercontroler != null) Playercontroler.SetTrigger("Chopping");
+        if (Playercontroler != null) Playercontroler.SetTrigger("Mining");
         yield return new WaitForSeconds(1f);
         if (rockObj != null)
         {
@@ -96,7 +96,7 @@ public class Mining : MonoBehaviour
     private IEnumerator MineOre(GameObject oreObj)
     {
         isActionInProgress = true;
-        if (Playercontroler != null) Playercontroler.SetTrigger("Chopping");
+        if (Playercontroler != null) Playercontroler.SetTrigger("Mining");
         yield return new WaitForSeconds(1f);
         if (oreObj != null)
         {
@@ -110,7 +110,7 @@ public class Mining : MonoBehaviour
     private IEnumerator PickHerb(GameObject herbObj)
     {
         isActionInProgress = true;
-        if (Playercontroler != null) Playercontroler.SetTrigger("Chopping");
+        if (Playercontroler != null) Playercontroler.SetTrigger("Picking");
         yield return new WaitForSeconds(1f);
         if (herbObj != null)
         {
