@@ -351,6 +351,7 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 400
   animator: {fileID: 766376482781715206}
+  GrasWalkSound: {fileID: 8300000, guid: fb659c8c6a8f4d142811ace32683097c, type: 3}
 --- !u!136 &2682801941249107094
 CapsuleCollider:
   m_ObjectHideFlags: 0
