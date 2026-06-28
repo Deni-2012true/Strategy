@@ -7,7 +7,8 @@ public class TreeCut : MonoBehaviour
 
     private AudioSource audioSource;
     public AudioClip TreeFallSound;
-    
+    public AudioClip AxeCutSound;
+
     public void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -27,6 +28,7 @@ public class TreeCut : MonoBehaviour
         else
         {
             animator.SetTrigger("Hit");
+            audioSource.PlayOneShot(AxeCutSound, 1f);
         }
         
     }

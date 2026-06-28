@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class RockMine : MonoBehaviour
 {
+    private AudioSource audioSource;
     public int rockHP = 5;
+    public AudioClip PickMiningSound;
 
+    public void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     public void TakeDamage(int damage)
     {
         rockHP -= damage;
@@ -12,6 +18,10 @@ public class RockMine : MonoBehaviour
             Collider col = GetComponent<Collider>();
             if (col != null) col.enabled = false;
             Destroy(gameObject);
+        }
+        else
+        {
+            audioSource.PlayOneShot(PickMiningSound, 1f);
         }
     }
 }
