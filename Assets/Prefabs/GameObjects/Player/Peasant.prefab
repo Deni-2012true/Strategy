@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treePosition: {x: 0, y: 0, z: 0}
   inFind: 0
+  currentTarget: {fileID: 0}
 --- !u!1001 &621188671967541095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -518,6 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b152b6354e44b146965f2e00f2d39d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 9009336691728414840}
   radar: {fileID: 7035705178243694512}
   AIPeasent: {fileID: 335115874756429831}
   Timer: 0

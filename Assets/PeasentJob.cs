@@ -17,14 +17,14 @@ public class PeasentJob : MonoBehaviour
 
     public float TreeTime = 4f;
 
-    public void Start()
+    void Start()
     {
         AIPeasent = GetComponent<PeasentAI>();
         radar = GetComponent<Radar>();
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other == null || other.gameObject == null) return;
 
@@ -35,17 +35,18 @@ public class PeasentJob : MonoBehaviour
             Pick.SetActive(true);
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
-        //AIPeasent.enabled = true;
         if (Axe != null) Axe.SetActive(false);
         if (Pick != null) Pick.SetActive(false);
         isActionInProgress = false;
         Debug.Log("Вышел из зоны!");
     }
 
-    private void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider other)
     {
+        if (radar == null) return;
+
         if (radar.inFind == false)
         {
             if (other == null || other.gameObject == null) return;
@@ -122,17 +123,26 @@ public class PeasentJob : MonoBehaviour
         }
         isActionInProgress = false;
     }
+
     public void Update()
     {
-        if (isActionInProgress)
+        if (AIPeasent == null) AIPeasent = GetComponent<PeasentAI>();
+        if (radar == null) radar = GetComponentInChildren<Radar>();
+        if (agent == null) agent = GetComponent<NavMeshAgent>();
+
+        if (agent == null || radar == null || AIPeasent == null) return;
+
+        AIPeasent.enabled = !isActionInProgress;
+
+        if (radar.inFind) return;
+
+        if (radar.currentTarget == null || !radar.currentTarget.activeInHierarchy)
         {
-            AIPeasent.enabled = false;
+            radar.ResetRadar();
+            return;
         }
-        else
-        {
-            AIPeasent.enabled = true;
-        }
-        if (radar.inFind == false)
+
+        if (agent.remainingDistance > 0.1f || agent.pathPending)
         {
             agent.SetDestination(radar.treePosition);
             Debug.Log("Игрок нашёл дерево.");
