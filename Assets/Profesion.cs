@@ -11,7 +11,7 @@ public class Profesion : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Woodcutter = true;
             Mason = false;
@@ -21,7 +21,7 @@ public class Profesion : MonoBehaviour
             Builder = false;
             Debug.Log("Дровосек");
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             Woodcutter = false;
             Mason = true;
@@ -31,7 +31,7 @@ public class Profesion : MonoBehaviour
             Builder = false;
             Debug.Log("Шахтёр");
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             Woodcutter = false;
             Mason = false;
@@ -41,7 +41,7 @@ public class Profesion : MonoBehaviour
             Builder = false;
             Debug.Log("Охотник");
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             Woodcutter = false;
             Mason = false;
@@ -51,7 +51,7 @@ public class Profesion : MonoBehaviour
             Builder = false;
             Debug.Log("Рыбак");
         }
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             Woodcutter = false;
             Mason = false;
@@ -61,7 +61,7 @@ public class Profesion : MonoBehaviour
             Builder = false;
             Debug.Log("Собиратель трав");
         }
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             Woodcutter = false;
             Mason = false;

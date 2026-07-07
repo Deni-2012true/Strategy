@@ -4,6 +4,20 @@ using UnityEngine.AI;
 
 public class PeasentJob : MonoBehaviour
 {
+    public enum Profession
+    {
+        Woodcutter,
+        Mason,
+        Herbalist,
+        Hunter
+    }
+    public Profession profession = Profession.Woodcutter;
+
+    public bool Woodcutter = false;
+    public bool Mason = false;
+    public bool Hanter = false;
+    public bool Herbalist = false;
+
     public NavMeshAgent agent;
     public Radar radar;
     public PeasentAI AIPeasent;
@@ -15,12 +29,10 @@ public class PeasentJob : MonoBehaviour
 
     private bool isActionInProgress = false;
 
-    public float TreeTime = 4f;
-
     void Start()
     {
         AIPeasent = GetComponent<PeasentAI>();
-        radar = GetComponent<Radar>();
+        radar = GetComponentInChildren<Radar>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -40,37 +52,9 @@ public class PeasentJob : MonoBehaviour
         if (Axe != null) Axe.SetActive(false);
         if (Pick != null) Pick.SetActive(false);
         isActionInProgress = false;
-        Debug.Log("Вышел из зоны!");
     }
 
-    void OnTriggerStay(Collider other)
-    {
-        if (radar == null) return;
-
-        if (radar.inFind == false)
-        {
-            if (other == null || other.gameObject == null) return;
-
-            if (isActionInProgress) return;
-
-            if (other.CompareTag("tree") && other.enabled)
-            {
-                StartCoroutine(ChopTree(other.gameObject));
-            }
-            else if (other.CompareTag("rock") && other.enabled)
-            {
-                StartCoroutine(MineRock(other.gameObject));
-            }
-            else if (other.CompareTag("Ore") && other.enabled)
-            {
-                StartCoroutine(MineOre(other.gameObject));
-            }
-            else if (other.CompareTag("Herb") && other.enabled)
-            {
-                StartCoroutine(PickHerb(other.gameObject));
-            }
-        }
-    }
+    void OnTriggerStay(Collider other) { }
 
     private IEnumerator ChopTree(GameObject treeObj)
     {
@@ -126,15 +110,58 @@ public class PeasentJob : MonoBehaviour
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Woodcutter = true;
+            Mason = false;
+            Hanter = false;
+            Herbalist = false;
+            Debug.Log("Дровосек");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Woodcutter = false;
+            Mason = true;
+            Hanter = false;
+            Herbalist = false;
+            Debug.Log("Шахтёр");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Woodcutter = false;
+            Mason = false;
+            Hanter = true;
+            Herbalist = false;
+            Debug.Log("Охотник");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Woodcutter = false;
+            Mason = false;
+            Hanter = false;
+            Herbalist = true;
+            Debug.Log("Собиратель трав");
+        }
+
         if (AIPeasent == null) AIPeasent = GetComponent<PeasentAI>();
         if (radar == null) radar = GetComponentInChildren<Radar>();
         if (agent == null) agent = GetComponent<NavMeshAgent>();
 
         if (agent == null || radar == null || AIPeasent == null) return;
 
-        AIPeasent.enabled = !isActionInProgress;
+        AIPeasent.enabled = false;
 
-        if (radar.inFind) return;
+        if (Woodcutter) radar.targetTag = "tree";
+        else if (Mason) radar.targetTag = "rock";
+        else if (Hanter) radar.targetTag = "Animal";
+        else if (Herbalist) radar.targetTag = "Herb";
+        else radar.targetTag = "tree";
+
+        if (radar.inFind)
+        {
+            isActionInProgress = true;
+            return;
+        }
 
         if (radar.currentTarget == null || !radar.currentTarget.activeInHierarchy)
         {
@@ -142,10 +169,35 @@ public class PeasentJob : MonoBehaviour
             return;
         }
 
-        if (agent.remainingDistance > 0.1f || agent.pathPending)
+        if (agent.remainingDistance > agent.stoppingDistance + 0.1f || agent.pathPending)
         {
-            agent.SetDestination(radar.treePosition);
-            Debug.Log("Игрок нашёл дерево.");
+            Debug.Log(radar.targetPosition);
+            agent.SetDestination(radar.targetPosition);
+            return;
+        }
+
+        if (!isActionInProgress)
+        {
+            string tag = radar.currentTarget.tag;
+            switch (tag)
+            {
+                case "tree":
+                    StartCoroutine(ChopTree(radar.currentTarget));
+                    break;
+                case "rock":
+                    StartCoroutine(MineRock(radar.currentTarget));
+                    break;
+                case "Ore":
+                    StartCoroutine(MineOre(radar.currentTarget));
+                    break;
+                case "Herb":
+                    StartCoroutine(PickHerb(radar.currentTarget));
+                    break;
+                default:
+                    Debug.LogWarning("Неизвестный ресурс: " + tag);
+                    radar.ResetRadar();
+                    break;
+            }
         }
     }
 }

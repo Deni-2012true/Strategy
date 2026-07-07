@@ -5,9 +5,10 @@ public class Radar : MonoBehaviour
     private SphereCollider sphereCollider;
     private float findTime = 0f;
 
-    public Vector3 treePosition;
+    public Vector3 targetPosition;
     public bool inFind = false;
     public GameObject currentTarget;
+    public string targetTag = "tree";
 
     void Start()
     {
@@ -43,9 +44,9 @@ public class Radar : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("tree"))
+        if (other.CompareTag(targetTag))
         {
-            treePosition = other.gameObject.transform.position;
+            targetPosition = other.gameObject.transform.position;
             currentTarget = other.gameObject;
             inFind = false;
             sphereCollider.radius = 0.5f;
@@ -58,6 +59,6 @@ public class Radar : MonoBehaviour
         findTime = 0f;
         sphereCollider.radius = 0.5f;
         currentTarget = null;
-        treePosition = Vector3.zero;
+        targetPosition = Vector3.zero;
     }
 }
