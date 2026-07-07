@@ -63,6 +63,10 @@ public class ButtonController : MonoBehaviour
            Debug.Log("Moving completed to: " + targetPosition);
        }
    }
+    //public void SummondButton()
+    //{
+    //    PeasentAI.isSummond = true;
+    //}
 }
 
 

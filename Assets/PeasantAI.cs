@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class PeasentAI : MonoBehaviour
 {
+    /*
     public Transform Player;
     private NavMeshAgent agent;
 
@@ -19,7 +20,7 @@ public class PeasentAI : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip ChopSound;
 
-    private static bool isSummond = false;
+    public static bool isSummond = false;
 
     void Start()
     {
@@ -90,5 +91,5 @@ public class PeasentAI : MonoBehaviour
         changeDirectionTimer = Random.Range(minChange, maxChange);
         isWalking = true;
         agent.isStopped = false;
-    }
+    } */
 }

@@ -4,18 +4,14 @@ using UnityEngine.AI;
 
 public class PeasentJob : MonoBehaviour
 {
-    public NavMeshAgent AIPeasent;
+    public NavMeshAgent agent;
+    public Radar radar;
+    public PeasentAI AIPeasent;
     public float Timer;
 
     public GameObject Axe;
     public GameObject Pick;
     public Animator Playercontroler;
-
-    private AudioSource audioSource;
-
-    public AudioClip PickMiningSound;
-    public AudioClip AxeCutSound;
-    public AudioClip PickingSound;
 
     private bool isActionInProgress = false;
 
@@ -23,8 +19,9 @@ public class PeasentJob : MonoBehaviour
 
     public void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        AIPeasent = GetComponent<NavMeshAgent>();
+        AIPeasent = GetComponent<PeasentAI>();
+        radar = GetComponent<Radar>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,26 +46,28 @@ public class PeasentJob : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        //TreeTimer();
-        if (other == null || other.gameObject == null) return;
-        //AIPeasent.enabled = false;
-        if (isActionInProgress) return;
+        if (radar.inFind == false)
+        {
+            if (other == null || other.gameObject == null) return;
 
-        if (other.CompareTag("tree") && other.enabled)
-        {
-            StartCoroutine(ChopTree(other.gameObject));
-        }
-        else if (other.CompareTag("rock") && other.enabled)
-        {
-            StartCoroutine(MineRock(other.gameObject));
-        }
-        else if (other.CompareTag("Ore") && other.enabled)
-        {
-            StartCoroutine(MineOre(other.gameObject));
-        }
-        else if (other.CompareTag("Herb") && other.enabled)
-        {
-            StartCoroutine(PickHerb(other.gameObject));
+            if (isActionInProgress) return;
+
+            if (other.CompareTag("tree") && other.enabled)
+            {
+                StartCoroutine(ChopTree(other.gameObject));
+            }
+            else if (other.CompareTag("rock") && other.enabled)
+            {
+                StartCoroutine(MineRock(other.gameObject));
+            }
+            else if (other.CompareTag("Ore") && other.enabled)
+            {
+                StartCoroutine(MineOre(other.gameObject));
+            }
+            else if (other.CompareTag("Herb") && other.enabled)
+            {
+                StartCoroutine(PickHerb(other.gameObject));
+            }
         }
     }
 
@@ -133,20 +132,10 @@ public class PeasentJob : MonoBehaviour
         {
             AIPeasent.enabled = true;
         }
-
-        //    public void TreeTimer()
-        //   {
-        //     if (Timer > 0)
-        //    {
-        //          Timer -= Time.deltaTime;
-
-        //      }
-        //       else if (Timer <= 0)
-        //       {
-        //          Timer = 4f;
-        //           AIPeasent.enabled = true;
-        //       }
-        //      Debug.Log(Timer);
-        //  }
+        if (radar.inFind == false)
+        {
+            agent.SetDestination(radar.treePosition);
+            Debug.Log("Игрок нашёл дерево.");
+        }
     }
 }
