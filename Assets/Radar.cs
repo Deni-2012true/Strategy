@@ -1,20 +1,28 @@
 using UnityEngine;
+using UnityEngine.Android;
 
 public class Radar : MonoBehaviour
 {
     private SphereCollider sphereCollider;
     private float findTime = 0f;
 
-    public Vector3 targetPosition;
+    public Vector3 treePosition;
     public bool inFind = false;
     public GameObject currentTarget;
-    public string targetTag = "tree";
+    public float maxTime = 5f;
+    public float minTime = 2f;
+    public float timerValue;
+    public float inFindTime;
+
 
     void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
         inFind = true;
         currentTarget = null;
+        timerValue = Random.Range(minTime, maxTime);
+        inFindTime = timerValue;
+        Permission();
     }
 
     void Update()
@@ -37,6 +45,7 @@ public class Radar : MonoBehaviour
         {
             if (currentTarget != null && !currentTarget.activeInHierarchy)
             {
+                Permission();
                 ResetRadar();
             }
         }
@@ -44,9 +53,9 @@ public class Radar : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(targetTag))
+        if (other.CompareTag("tree"))
         {
-            targetPosition = other.gameObject.transform.position;
+            treePosition = other.gameObject.transform.position;
             currentTarget = other.gameObject;
             inFind = false;
             sphereCollider.radius = 0.5f;
@@ -59,6 +68,18 @@ public class Radar : MonoBehaviour
         findTime = 0f;
         sphereCollider.radius = 0.5f;
         currentTarget = null;
-        targetPosition = Vector3.zero;
+        treePosition = Vector3.zero;
+    }
+    public void Permission()
+    {
+        if (inFindTime >= 0f)
+        {
+            inFindTime += Time.deltaTime;
+            inFind = false;
+        } 
+        else if(inFindTime < 0)
+        {
+            inFind = true;
+        }
     }
 }

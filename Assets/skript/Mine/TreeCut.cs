@@ -27,9 +27,13 @@ public class TreeCut : MonoBehaviour
         }
         else
         {
-            animator.SetTrigger("Hit");
-            audioSource.PlayOneShot(AxeCutSound, 1f);
+            Damage();
+            
         }
-        
+    }
+    public void Damage()
+    {
+        animator.SetTrigger("Hit");
+        audioSource.PlayOneShot(AxeCutSound, 1f);
     }
 }
