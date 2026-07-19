@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Profesion : MonoBehaviour
 {
-    private bool Woodcutter = false;
-    private bool Mason = false;
-    private bool Hanter = false;
-    private bool Fisherman = false;
-    private bool Herbalist = false;
-    private bool Builder = false;
+    public bool Woodcutter = false;
+    public bool Mason = false;
+    public bool Hanter = false;
+    public bool Fisherman = false;
+    public bool Herbalist = false;
+    public bool Builder = false;
 
     void Update()
     {

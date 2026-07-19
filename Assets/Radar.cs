@@ -3,6 +3,7 @@ using UnityEngine.Android;
 
 public class Radar : MonoBehaviour
 {
+    public Profesion profesion;
     private SphereCollider sphereCollider;
     private float findTime = 0f;
 
@@ -53,7 +54,28 @@ public class Radar : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("tree"))
+        if (other.CompareTag("tree") && profesion.Woodcutter) 
+        {
+            treePosition = other.gameObject.transform.position;
+            currentTarget = other.gameObject;
+            inFind = false;
+            sphereCollider.radius = 0.5f;
+        } 
+        if ((other.CompareTag("rock") || other.CompareTag("Ore")) && profesion.Mason)
+        {
+            treePosition = other.gameObject.transform.position;
+            currentTarget = other.gameObject;
+            inFind = false;
+            sphereCollider.radius = 0.5f;
+        }
+        //if (other.CompareTag("Ore") && profesion.Woodcutter)
+        //{
+        //    treePosition = other.gameObject.transform.position;
+        //    currentTarget = other.gameObject;
+        //    inFind = false;
+        //    sphereCollider.radius = 0.5f;
+        //}
+        if (other.CompareTag("Herb") && profesion.Herbalist)
         {
             treePosition = other.gameObject.transform.position;
             currentTarget = other.gameObject;
