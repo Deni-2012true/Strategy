@@ -8,15 +8,16 @@ public class TreeCut : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip TreeFallSound;
     public AudioClip AxeCutSound;
+    public float Timer;
 
     public void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        Timer = 1f;
     }
 
     public void TakeDamage(int damage)
     {
-        treeHP -= damage;
         if (treeHP <= 0)
         {
             Collider col = GetComponent<Collider>();
@@ -27,13 +28,9 @@ public class TreeCut : MonoBehaviour
         }
         else
         {
-            Damage();
-            
-        }
-    }
-    public void Damage()
-    {
-        animator.SetTrigger("Hit");
-        audioSource.PlayOneShot(AxeCutSound, 1f);
+            treeHP -= damage;
+            animator.SetTrigger("Hit");
+            audioSource.PlayOneShot(AxeCutSound, 1f);
+        }  
     }
 }

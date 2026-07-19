@@ -76,12 +76,13 @@ public class PeasentJob : MonoBehaviour
     {
         isActionInProgress = true;
         if (Playercontroler != null) Playercontroler.SetTrigger("Chopping");
-        yield return new WaitForSeconds(2.3f);
+        yield return new WaitForSeconds(1f);
         if (treeObj != null)
         {
             TreeCut tree = treeObj.GetComponent<TreeCut>();
             if (tree != null) tree.TakeDamage(1);
         }
+        yield return new WaitForSeconds(1.2f);
         isActionInProgress = false;
     }
 
