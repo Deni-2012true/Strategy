@@ -2,21 +2,30 @@ using UnityEngine;
 
 public class OreMine : MonoBehaviour
 {
+    public BoxCollider BoxCol;
+    public CapsuleCollider CapCol;
+
     private AudioSource audioSource;
-    public int oreHP = 8;
     public AudioClip PickMiningSound;
+
+    public int oreHP = 8;
+
+    public Enventory enventory;
 
     public void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        BoxCol = GetComponent<BoxCollider>();
+        CapCol = GetComponent<CapsuleCollider>();
     }
     public void TakeDamage(int damage)
     {
         oreHP -= damage;
         if (oreHP <= 0)
         {
-            Collider col = GetComponent<Collider>();
-            if (col != null) col.enabled = false;
+            BoxCol.enabled = false;
+            CapCol.enabled = false;
+            enventory.copperQuantity += 3;
             Destroy(gameObject);
         }
         else

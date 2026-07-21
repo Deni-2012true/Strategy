@@ -2,29 +2,35 @@ using UnityEngine;
 
 public class TreeCut : MonoBehaviour
 {
+    public BoxCollider BoxCol;
+    public CapsuleCollider CapCol;
+
     public int treeHP = 3;
     public Animator animator;
 
     private AudioSource audioSource;
     public AudioClip TreeFallSound;
     public AudioClip AxeCutSound;
-    public float Timer;
+
+    public Enventory enventory;
 
     public void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        Timer = 1f;
+        BoxCol = GetComponent<BoxCollider>();
+        CapCol = GetComponent<CapsuleCollider>();
     }
 
     public void TakeDamage(int damage)
     {
         if (treeHP <= 0)
         {
-            Collider col = GetComponent<Collider>();
-            if (col != null) col.enabled = false;
+            BoxCol.enabled = false;
+            CapCol.enabled = false;
+            enventory.pineQuantity += 3;
             animator.SetTrigger("Fall");
             audioSource.PlayOneShot(TreeFallSound);
-            Destroy(gameObject, 2.2f);
+            Destroy(gameObject, 3.2f);
         }
         else
         {

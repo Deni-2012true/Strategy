@@ -2,21 +2,30 @@ using UnityEngine;
 
 public class RockMine : MonoBehaviour
 {
+    public BoxCollider BoxCol;
+    public CapsuleCollider CapCol;
+
     private AudioSource audioSource;
-    public int rockHP = 5;
     public AudioClip PickMiningSound;
+
+    public int rockHP = 5;
+
+    public Enventory enventory;
 
     public void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        BoxCol = GetComponent<BoxCollider>();
+        CapCol = GetComponent<CapsuleCollider>();
     }
     public void TakeDamage(int damage)
     {
         rockHP -= damage;
         if (rockHP <= 0)
         {
-            Collider col = GetComponent<Collider>();
-            if (col != null) col.enabled = false;
+            BoxCol.enabled = false;
+            CapCol.enabled = false;
+            enventory.stoneQuantity += 3;
             Destroy(gameObject);
         }
         else

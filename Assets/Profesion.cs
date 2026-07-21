@@ -8,6 +8,7 @@ public class Profesion : MonoBehaviour
     public bool Fisherman = false;
     public bool Herbalist = false;
     public bool Builder = false;
+    public PeasentAI peasentAI;
 
     void Update()
     {
@@ -19,6 +20,7 @@ public class Profesion : MonoBehaviour
             Fisherman = false;
             Herbalist = false;
             Builder = false;
+            peasentAI.enabled = false;
             Debug.Log("Дровосек");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -29,6 +31,7 @@ public class Profesion : MonoBehaviour
             Fisherman = false;
             Herbalist = false;
             Builder = false;
+            peasentAI.enabled = false;
             Debug.Log("Шахтёр");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -39,6 +42,7 @@ public class Profesion : MonoBehaviour
             Fisherman = false;
             Herbalist = false;
             Builder = false;
+            peasentAI.enabled = false;
             Debug.Log("Охотник");
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -49,6 +53,7 @@ public class Profesion : MonoBehaviour
             Fisherman = true;
             Herbalist = false;
             Builder = false;
+            peasentAI.enabled = false;
             Debug.Log("Рыбак");
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
@@ -59,6 +64,7 @@ public class Profesion : MonoBehaviour
             Fisherman = false;
             Herbalist = true;
             Builder = false;
+            peasentAI.enabled = false;
             Debug.Log("Собиратель трав");
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
@@ -69,8 +75,21 @@ public class Profesion : MonoBehaviour
             Fisherman = false;
             Herbalist = false;
             Builder = true;
+            peasentAI.enabled = false;
             Debug.Log("Строитель");
         }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            Woodcutter = false;
+            Mason = false;
+            Hanter = false;
+            Fisherman = false;
+            Herbalist = false;
+            Builder = false;
+            peasentAI.enabled = true;
+            Debug.Log("Бездельник");
+        }
+        //peasentAI.enabled = false;
     }
     public void SetWoodcutter()
     {

@@ -115,7 +115,7 @@ public class Mining : MonoBehaviour
         if (herbObj != null)
         {
             HerbPick herb = herbObj.GetComponent<HerbPick>();
-            if (herb != null) herb.TakeDamage(1);
+            if (herb != null) herb.TakeDamage();
             audioSource.PlayOneShot(PickingSound, 1f);
         }
         isActionInProgress = false;

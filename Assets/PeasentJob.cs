@@ -22,6 +22,7 @@ public class PeasentJob : MonoBehaviour
         AIPeasent = GetComponent<PeasentAI>();
         radar = GetComponent<Radar>();
         agent = GetComponent<NavMeshAgent>();
+        AIPeasent.enabled = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -120,7 +121,7 @@ public class PeasentJob : MonoBehaviour
         if (herbObj != null)
         {
             HerbPick herb = herbObj.GetComponent<HerbPick>();
-            if (herb != null) herb.TakeDamage(1);
+            if (herb != null) herb.TakeDamage();
         }
         isActionInProgress = false;
     }
@@ -133,7 +134,7 @@ public class PeasentJob : MonoBehaviour
 
         if (agent == null || radar == null || AIPeasent == null) return;
 
-        AIPeasent.enabled = !isActionInProgress;
+        //AIPeasent.enabled = !isActionInProgress;
 
         if (radar.inFind) return;
 
@@ -143,8 +144,16 @@ public class PeasentJob : MonoBehaviour
             return;
         }
 
-
         agent.SetDestination(radar.treePosition);
         Debug.Log("Игрок идёт к дереву.");
+
+        if (agent.velocity.magnitude > 0)
+        {
+            Playercontroler.SetBool("Walk", true);
+        }
+        else if (agent.velocity.magnitude <= 0)
+        {
+            Playercontroler.SetBool("Walk", false);
+        }
     }
 }

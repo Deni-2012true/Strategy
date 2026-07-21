@@ -105,6 +105,9 @@ MonoBehaviour:
   treeHP: 6
   animator: {fileID: 498050388317845694}
   TreeFallSound: {fileID: 8300000, guid: c539aa3b76545354f8ec91727eeddab6, type: 3}
+  AxeCutSound: {fileID: 8300000, guid: 5fc41acd3b3a59140ba986ae275bf7e9, type: 3}
+  Timer: 0
+  enventory: {fileID: 11400000, guid: ca0e7aebbc6c9624d9e34b41f5349e86, type: 2}
 --- !u!65 &3702200934195211735
 BoxCollider:
   m_ObjectHideFlags: 0

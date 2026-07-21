@@ -32,7 +32,7 @@ public class Radar : MonoBehaviour
         {
             if (findTime <= 280f)
             {
-                findTime += Time.deltaTime * 10f;
+                findTime += Time.deltaTime * 100f;
                 sphereCollider.radius = findTime;
             }
             else
