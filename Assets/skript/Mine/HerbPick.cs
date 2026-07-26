@@ -7,9 +7,8 @@ public class HerbPick : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip PickingSound;
 
-    //public int herbHP = 1;
-
     public Enventory enventory;
+    public InventoryUI inventoryUI;
 
     public void Start()
     {
@@ -22,6 +21,7 @@ public class HerbPick : MonoBehaviour
         CapCol.enabled = false;
         enventory.herbQuantity += 1;
         //Destroy(gameObject, 1f);
+        inventoryUI.RefreshUI();
         gameObject.SetActive(false);
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RockMine : MonoBehaviour
 {
-    public BoxCollider BoxCol;
+    public SphereCollider BoxCol;
     public CapsuleCollider CapCol;
 
     private AudioSource audioSource;
@@ -11,11 +11,12 @@ public class RockMine : MonoBehaviour
     public int rockHP = 5;
 
     public Enventory enventory;
+    public InventoryUI inventoryUI;
 
     public void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        BoxCol = GetComponent<BoxCollider>();
+        BoxCol = GetComponent<SphereCollider>();
         CapCol = GetComponent<CapsuleCollider>();
     }
     public void TakeDamage(int damage)
@@ -26,6 +27,7 @@ public class RockMine : MonoBehaviour
             BoxCol.enabled = false;
             CapCol.enabled = false;
             enventory.stoneQuantity += 3;
+            inventoryUI.RefreshUI();
             Destroy(gameObject);
         }
         else

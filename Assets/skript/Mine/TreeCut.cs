@@ -13,6 +13,7 @@ public class TreeCut : MonoBehaviour
     public AudioClip AxeCutSound;
 
     public Enventory enventory;
+    public InventoryUI inventoryUI;
 
     public void Start()
     {
@@ -30,6 +31,7 @@ public class TreeCut : MonoBehaviour
             enventory.pineQuantity += 3;
             animator.SetTrigger("Fall");
             audioSource.PlayOneShot(TreeFallSound);
+            inventoryUI.RefreshUI();
             Destroy(gameObject, 3.2f);
         }
         else

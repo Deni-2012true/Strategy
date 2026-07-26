@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6971f39918bc3bc4e9d882cf10ae9a52, type: 3}
   m_Name: Enventory
   m_EditorClassIdentifier: 
-  pineQuantity: 6
-  stoneQuantity: 0
-  copperQuantity: 0
-  herbQuantity: 3
+  pineQuantity: 89
+  pineIcon: {fileID: 21300000, guid: e232efa096f10134a91bdf0ff689e302, type: 3}
+  stoneQuantity: 33
+  stoneIcon: {fileID: 21300000, guid: edcbd57032ccbd44e9f228cdd323ab50, type: 3}
+  copperQuantity: 62
+  copperIcon: {fileID: 21300000, guid: 4aa51169f48c2c64ebaf2ad9072def28, type: 3}
+  herbQuantity: 2
+  herbIcon: {fileID: 21300000, guid: 9bdfef7a066beba478a58913de7b9cfc, type: 3}
